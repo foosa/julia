@@ -121,6 +121,7 @@ RangeStepStyle(::Type{<:AbstractRange}) = RangeStepIrregular()
 RangeStepStyle(::Type{<:AbstractRange{<:Integer}}) = RangeStepRegular()
 
 convert(::Type{T}, r::AbstractRange) where {T<:AbstractRange} = r isa T ? r : T(r)
+firstindex(::AbstractRange) = 1 # Needed to fold the `firstindex` call in SimdLoop.simd_index
 
 ## ordinal ranges
 
